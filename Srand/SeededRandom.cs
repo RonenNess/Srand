@@ -61,22 +61,16 @@ namespace Srand
             return state;
         }
 
-        /// <summary>
-        /// Generate and return a random integer value, ranging from 0 (inclusive) to int.MaxValue (exclusive).
-        /// </summary>
-        /// <returns>Random int value.</returns>
+        /// <inheritdoc/>
         public override int Next()
         {
             return (int)(Sample() * int.MaxValue);
         }
 
-        /// <summary>
-        /// Generate and return a random double value, ranging from 0.0 (inclusive) to 1.0 (exclusive).
-        /// </summary>
-        /// <returns>Random double value.</returns>
+        /// <inheritdoc/>
         protected override double Sample()
         {
-            return (double)(NextUint() / uint.MaxValue);
+            return ((double)NextUint() / (double)uint.MaxValue);
         }
 
         /// <summary>
