@@ -2,10 +2,9 @@
 namespace Srand
 {
     /// <summary>
-	/// A seeded random based on the 'Multiply with carry pseudorandom number generator' algorithm.
-    /// Used to generate consistent random numbers across all platforms and .net versions, using a predefined seed of numbers + mutator.
-    /// Note: this class is not thread-safe, to use in multiple threads you need an instance per thread (instances are very lightweight and quick to create).
-	/// </summary>
+    /// Used to generate consistent random numbers across all platforms and .net versions.
+    /// Note: this class is not thread-safe.
+    /// </summary>
     public class SeededRandom : Random
     {
         private uint state;
