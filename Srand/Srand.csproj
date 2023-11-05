@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Srand</Title>
+    <Authors>Ronen Ness</Authors>
+    <Description>Generate persistent seeded random numbers across any machine and version.</Description>
+    <PackageProjectUrl>https://github.com/RonenNess/Srand/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RonenNess/Srand/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>random;seeded random</PackageTags>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
