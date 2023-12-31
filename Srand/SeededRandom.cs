@@ -7,7 +7,11 @@ namespace Srand
     /// </summary>
     public class SeededRandom : Random
     {
-        private uint state;
+        private const long Multiplier = 6364136223846793005L;
+        private const long Increment = 1442695040888963407L;
+        private const long Modulus = long.MaxValue;
+
+        private long _seed;
 
         /// <summary>
         /// Create the seeded random generator.
@@ -15,7 +19,7 @@ namespace Srand
         /// <param name="seed">Seed to use for random numbers. Random generators with the same seed will always output the same results.</param>
         public SeededRandom(uint seed = 0)
         {
-            state = seed;
+            _seed = seed;
         }
 
         /// <summary>
@@ -24,7 +28,16 @@ namespace Srand
         /// <param name="seed">Seed to use for random numbers. Random generators with the same seed will always output the same results.</param>
         public SeededRandom(int seed = 0)
         {
-            state = (uint)seed;
+            _seed = seed;
+        }
+
+        /// <summary>
+        /// Create the seeded random generator.
+        /// </summary>
+        /// <param name="seed">Seed to use for random numbers. Random generators with the same seed will always output the same results.</param>
+        public SeededRandom(long seed = 0)
+        {
+            _seed = seed;
         }
 
         /// <summary>
@@ -55,10 +68,7 @@ namespace Srand
         /// <returns>Random uint value.</returns>
         public uint NextUint()
         {
-            state ^= (state << 13);
-            state ^= (state >> 17);
-            state ^= (state << 5);
-            return state;
+            return (uint)(Sample() * uint.MaxValue);
         }
 
         /// <inheritdoc/>
@@ -70,7 +80,8 @@ namespace Srand
         /// <inheritdoc/>
         protected override double Sample()
         {
-            return ((double)NextUint() / (double)uint.MaxValue);
+            _seed = (Multiplier * _seed + Increment) % Modulus;
+            return (_seed & long.MaxValue) / (double)long.MaxValue;
         }
 
         /// <summary>
